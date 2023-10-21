@@ -12,9 +12,7 @@ mongo_db_name = "your_database_name"
 client = MongoClient(mongo_host, mongo_port)
 database: Database = client[mongo_db_name]
 
-# Create multiple collections
-collection1_name = "collection1"
-collection2_name = "collection2"
 
 collection1: Collection[model.UserModel] = database["StudentDetails"]
-collection2: Collection = database[collection2_name]
+collection2: Collection = database["AcademicInfo"]
+

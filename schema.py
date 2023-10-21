@@ -1,7 +1,9 @@
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+from typing import List
 
-
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
 class Login(BaseModel):
     email_id: str
     password: str
