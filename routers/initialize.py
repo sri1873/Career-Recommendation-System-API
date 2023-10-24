@@ -41,7 +41,7 @@ def login(form_data: schema.Login):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
         )
-    access_token = auth.create_access_token(data={"mail": user["email"]})
+    access_token = auth.create_access_token(data={"mail": user["email"],"careerPath":user["carrer_path"],"user_id":user["_id"],"roles":[{"authority":"USER"}]})
     return {"access_token": access_token, "token_type": "bearer"}
 
 

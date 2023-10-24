@@ -39,6 +39,7 @@ def convertMarks(file, markSys):
                     "email": email,
                     "password": hashed_password,
                     "academic_info": new_uuid,
+                    "carrer_path":None
                 }
             },
             upsert=True,
@@ -51,5 +52,5 @@ def convertMarks(file, markSys):
 def careerFit(studentId):
     subjectMarks=db.collection2.find_one({"student_id":studentId})["subject_marks"]
     result_list = [value for marks in subjectMarks for value in marks.values()]
-    print(result_list)
+    print(result_list )
 
