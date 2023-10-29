@@ -46,11 +46,11 @@ def login(form_data: schema.Login):
 
 
 @router.post("/initialize")
-def startUp(markSys:str,file: UploadFile = File()):
+def startUp(markSys:str,year:str,semester:str,file: UploadFile = File()):
     contents = file.file.read()
     buffer = BytesIO(contents)
     df = pd.read_csv(buffer, skip_blank_lines=True)
-    studentMails=importCSV.convertMarks(df,markSys)
+    studentMails=importCSV.convertMarks(df,markSys,year,semester)
     buffer.close()
     file.file.close()
     return studentMails
