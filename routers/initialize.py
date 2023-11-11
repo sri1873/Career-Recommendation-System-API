@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, status, File, UploadFile
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
+from fastapi.responses import JSONResponse
 import logging
+import db
 from service import importCSV
 from io import BytesIO
 import pandas as pd
@@ -72,3 +74,16 @@ async def simple_send(email: schema.EmailSchema) -> JSONResponse:
 @router.post("/careerfit")
 def careerFit(studentId:str):
     return importCSV.careerFit(studentId)
+
+
+@router.post("/overallperformance")
+def overall_performance(studentId:str):
+    return importCSV.calculate_student_overall_performance(studentId)
+
+@router.post("/skill-Gap-Analysis")
+def SkilGap(studentId:str):
+    return importCSV.calculate_student_skill_gap(studentId)
+
+@router.put("/careerpathupdate")
+def careerpathupdate(studentID: str, careerpath: str):
+    return importCSV.add_careerpath(studentID, careerpath)
