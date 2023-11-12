@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.database import Database
+
 import model
 
 # Replace these with your MongoDB connection details
