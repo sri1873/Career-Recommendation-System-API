@@ -87,3 +87,8 @@ def SkilGap(studentId:str):
 @router.put("/careerpathupdate")
 def careerpathupdate(studentID: str, careerpath: str):
     return importCSV.add_careerpath(studentID, careerpath)
+
+
+@router.post("/recommendations")
+def recommendations(studentId:str):
+    return importCSV.recommendations(studentId)
