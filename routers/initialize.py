@@ -89,5 +89,10 @@ def SkilGap(studentId:str):
     return importCSV.calculate_student_skill_gap(studentId)
 
 @router.put("/careerpathupdate")
-def careerpathupdate(studentId: str, careerpath: str):
-    return importCSV.add_careerpath(studentId, careerpath)
+def careerpathupdate(studentID: str, careerpath: str):
+    return importCSV.add_careerpath(studentID, careerpath)
+
+
+@router.post("/recommendations")
+def recommendations(studentId:str):
+    return importCSV.recommendations(studentId)
