@@ -71,9 +71,13 @@ async def simple_send(email: schema.EmailSchema) -> JSONResponse:
     await fm.send_message(message)
     return JSONResponse(status_code=200, content={"message": "email has been sent"})
 
-@router.post("/careerfit")
+@router.get("/careerfit")
 def careerFit(studentId:str):
     return importCSV.careerFit(studentId)
+
+@router.get("/getCareerPaths")
+def careerFit():
+    return importCSV.getCareerPaths()
 
 
 @router.post("/overallperformance")
@@ -85,5 +89,5 @@ def SkilGap(studentId:str):
     return importCSV.calculate_student_skill_gap(studentId)
 
 @router.put("/careerpathupdate")
-def careerpathupdate(studentID: str, careerpath: str):
-    return importCSV.add_careerpath(studentID, careerpath)
+def careerpathupdate(studentId: str, careerpath: str):
+    return importCSV.add_careerpath(studentId, careerpath)

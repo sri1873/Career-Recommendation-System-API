@@ -15,4 +15,4 @@ database: Database = client[mongo_db_name]
 
 collection1: Collection[model.UserModel] = database["StudentDetails"]
 collection2: Collection = database["AcademicInfo"]
-collection3: Collection = database["CareerSubjects"]
+collection3: Collection = database["CareerPaths"]
