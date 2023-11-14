@@ -151,6 +151,8 @@ def calculate_student_overall_performance(studentId):
     )
     return {"overall_performance": overall_performance}
 
+def getOverallPerformance(studentId):
+    return db.collection4.find_one({"_id":studentId});
 
 def recommendations(studentId):
     subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
@@ -257,12 +259,7 @@ def recommendations(studentId):
                 )
 
             elif gap == 0:
-                suggestions.extend(
-                    [
-                        f"You are fit for {subject}",
-                        f"Don't lose your confidence, prepare for other subjects to achieve your dream job",
-                    ]
-                )
+                continue
 
             recommendations[subject] = suggestions
 
