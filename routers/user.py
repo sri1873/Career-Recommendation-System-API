@@ -82,23 +82,3 @@ async def simple_send(email: schema.EmailSchema) -> JSONResponse:
     fm = FastMail(conf)
     await fm.send_message(message)
     return JSONResponse(status_code=200, content={"message": "email has been sent"})
-<<<<<<< HEAD:routers/initialize.py
-
-@router.post("/careerfit")
-def careerFit(studentId:str):
-    return importCSV.careerFit(studentId)
-
-
-@router.post("/overallperformance")
-def overall_performance(studentId:str):
-    return importCSV.calculate_student_overall_performance(studentId)
-
-@router.post("/skill-Gap-Analysis")
-def SkilGap(studentId:str):
-    return importCSV.calculate_student_skill_gap(studentId)
-
-@router.put("/careerpathupdate")
-def careerpathupdate(studentID: str, careerpath: str):
-    return importCSV.add_careerpath(studentID, careerpath)
-=======
->>>>>>> 92cd60f2ed6b742b88ee4dca3e6bc9bb56c233e4:routers/user.py
