@@ -1,13 +1,4 @@
-<<<<<<< HEAD:routers/initialize.py
-from fastapi import APIRouter, HTTPException, status, File, UploadFile
-from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
-from fastapi.responses import JSONResponse
 import logging
-import db
-from service import importCSV
-=======
-import logging
->>>>>>> 92cd60f2ed6b742b88ee4dca3e6bc9bb56c233e4:routers/user.py
 from io import BytesIO
 
 import pandas as pd
