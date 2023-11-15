@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.database import Database
+
 import model
 
 # Replace these with your MongoDB connection details
@@ -15,4 +16,5 @@ database: Database = client[mongo_db_name]
 
 collection1: Collection[model.UserModel] = database["StudentDetails"]
 collection2: Collection = database["AcademicInfo"]
-collection3: Collection = database["CareerSubjects"]
+collection3: Collection = database["CareerPaths"]
+collection4: Collection = database["OverallPerformance"]
