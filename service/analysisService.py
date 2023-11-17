@@ -264,3 +264,82 @@ def recommendations(studentId):
             recommendations[subject] = suggestions
 
     return recommendations
+
+
+def get_rank_and_top3(studentId):
+    student_job_role = db.collection1.find_one({"_id": studentId}).get("carrer_path")
+
+    cursor = db.collection1.find({"carrer_path": student_job_role}, {"_id": 1})
+    all_students = [student["_id"] for student in cursor]
+    marks = db.collection4.find({"_id": {"$in": all_students}}, {"_id": 1, "performance": 1})
+
+    all_marks = []
+    for student in marks:
+        latest_performance = sorted(student.get("performance", []), key=lambda x: x.get("label", ""), reverse=True)
+        if latest_performance:
+            all_marks.append({"_id": student["_id"], "actual_marks": latest_performance[-1].get("actual", 0)})
+
+    print(all_marks)
+    if len(all_marks) <= 1:
+        return all_marks
+
+    def quick_sort_descending(student_data):
+        if len(student_data) <= 1:
+            return student_data
+        pivot = student_data[0]
+        lesser = []
+        equal = []
+        greater = []
+        for student in student_data:
+            if student['actual_marks'] < pivot['actual_marks']:
+                lesser.append(student)
+            elif student['actual_marks'] == pivot['actual_marks']:
+                equal.append(student)
+            else:
+                greater.append(student)
+        return quick_sort_descending(greater) + equal + quick_sort_descending(lesser)
+
+    pivot = all_marks[0]
+    lesser = []
+    equal = []
+    greater = []
+    for student in all_marks:
+        if student['actual_marks'] < pivot['actual_marks']:
+            lesser.append(student)
+        elif student['actual_marks'] == pivot['actual_marks']:
+            equal.append(student)
+        else:
+            greater.append(student)
+
+    sorted_students = quick_sort_descending(greater) + equal + quick_sort_descending(lesser)
+
+    rank_of_student = None
+    for idx, student in enumerate(sorted_students, start=1):
+        if student['_id'] == studentId:
+            rank_of_student = idx
+            break
+
+    top_3_students = sorted_students[:3] if len(sorted_students) >= 3 else sorted_students
+
+    if rank_of_student is not None and rank_of_student <= 3:
+        top_3_students_formatted = [{
+            "_id": student["_id"],
+            "user_name": db.collection1.find_one({"_id": student["_id"]}).get("user_name"),
+            "actual_marks": student["actual_marks"],
+            "rank": idx + 1
+        } for idx, student in enumerate(top_3_students)]
+        return top_3_students_formatted
+    else:
+        student_rank = {
+            "_id": studentId,
+            "user_name": db.collection1.find_one({"_id": studentId}).get("user_name"),
+            "actual_marks": sorted_students[rank_of_student - 1]["actual_marks"],
+            "rank": rank_of_student
+        }
+        top_3_students_formatted = [{
+            "_id": student["_id"],
+            "user_name": db.collection1.find_one({"_id": student["_id"]}).get("user_name"),
+            "actual_marks": student["actual_marks"],
+            "rank": idx + 1
+        } for idx, student in enumerate(top_3_students)]
+        return top_3_students_formatted + [student_rank]
