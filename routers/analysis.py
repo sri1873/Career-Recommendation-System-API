@@ -35,3 +35,9 @@ def get_overall_performance(studentId: str):
 @router.post("/recommendations")
 def recommendations(studentId: str):
     return analysisService.recommendations(studentId)
+
+
+
+@router.post("/top_3rank")
+def top3_rankandstudentrank(studentId: str):
+    return analysisService.get_rank_and_top3(studentId)
