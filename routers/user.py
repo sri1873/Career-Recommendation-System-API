@@ -3,9 +3,10 @@ from io import BytesIO
 
 import pandas as pd
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
-from fastapi.responses import JSONResponse
-from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
+from schema import EmailBody
 from starlette.responses import JSONResponse
+from smtplib import SMTP_SSL
+from email.mime.text import MIMEText
 
 import auth
 import db
@@ -22,25 +23,14 @@ file_handler = logging.FileHandler("logs//user.log")
 file_handler.setFormatter(formatter)
 
 logger.addHandler(file_handler)
-
-
-conf = ConnectionConfig(
-    MAIL_USERNAME="kssrikumar180703@gmail.com",
-    MAIL_PASSWORD="bddf cjjh xivz ipjk",
-    MAIL_FROM="kssrikumar180703@gmail.com",
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=False,
-    MAIL_SSL_TLS=True,
-    USE_CREDENTIALS=True,
-    VALIDATE_CERTS=True,
-)
+OWN_EMAIL = ("kssrikumar180703@gmail.com",)
+OWN_EMAIL_PASSWORD = "bddf cjjh xivz ipjk"
 
 router = APIRouter(tags=["Users"], prefix="/user")
 
 
 @router.post("/login")
-def login(emailId: str,password:str):
+def login(emailId: str, password: str):
     user: model.UserModel = db.collection1.find_one({"email": emailId})
     if not (user and hashing.verify_password(password, user["password"])):
         raise HTTPException(
@@ -69,16 +59,20 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
     return studentMails
 
 
-@router.post("/email")
-async def simple_send(email:str) -> JSONResponse:
-    lemail=email.split(',')
-    message = MessageSchema(
-        subject="Fastapi-Mail module",
-        recipients=lemail,
-        body="Your password is Pa55w0rd",
-        subtype=MessageType.html,
-    )
+# @router.post("/email")
+# async def simple_send(body: EmailBody) -> JSONResponse:
+#     msg = MIMEText(body.message, "html")
+#     msg["Subject"] = body.subject
+#     msg["From"] = f"Denolyrics <{OWN_EMAIL}>"
+#     msg["To"] = body.to
 
-    fm = FastMail(conf)
-    await fm.send_message(message)
-    return JSONResponse(status_code=200, content={"message": "email has been sent"})
+#     port = 465  # For SSL
+
+#     # Connect to the email server
+#     server = SMTP_SSL("kssrikumar180703@gmail.com", port)
+#     server.login(OWN_EMAIL, OWN_EMAIL_PASSWORD)
+
+#     # Send the email
+#     server.send_message(msg)
+#     server.quit()
+#     return JSONResponse(status_code=200, content={"message": "email has been sent"})
