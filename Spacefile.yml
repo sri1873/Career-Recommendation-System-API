@@ -1,8 +1,0 @@
-v: 0
-micros:
-  - name: skill-edu
-    src: .
-    engine: python3.9
-    public_routes:
-      - "/*"
-    run: uvicorn main:app
