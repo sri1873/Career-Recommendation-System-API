@@ -10,6 +10,5 @@ uvicorn
 pymongo 
 sqlalchemy 
 passlib 
-pydantic==1.5
 python-jose
 scikit-learn
