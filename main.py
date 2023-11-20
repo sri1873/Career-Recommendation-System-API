@@ -7,6 +7,7 @@ from routers import analysis, careerfitting, user
 app = FastAPI()
 origins = [
     "http://localhost:3000",
+    "https://skill-edu.netlify.app"
 ]
 
 app.add_middleware(
