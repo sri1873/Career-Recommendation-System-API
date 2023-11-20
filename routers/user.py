@@ -40,9 +40,9 @@ router = APIRouter(tags=["Users"], prefix="/user")
 
 
 @router.post("/login")
-def login(form_data):
-    user: model.UserModel = db.collection1.find_one({"email": form_data.email_id})
-    if not (user and hashing.verify_password(form_data.password, user["password"])):
+def login(emailId: str,password:str):
+    user: model.UserModel = db.collection1.find_one({"email": emailId})
+    if not (user and hashing.verify_password(password, user["password"])):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
@@ -70,10 +70,11 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
 
 
 @router.post("/email")
-async def simple_send(email) -> JSONResponse:
+async def simple_send(email:str) -> JSONResponse:
+    lemail=email.split(',')
     message = MessageSchema(
         subject="Fastapi-Mail module",
-        recipients=email.dict().get("email"),
+        recipients=lemail,
         body="Your password is Pa55w0rd",
         subtype=MessageType.html,
     )
