@@ -1,11 +1,5 @@
-import csv
-import json
-import uuid
-from io import BytesIO
-from pathlib import Path
 
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
+import uuid
 
 import db
 import hashing
