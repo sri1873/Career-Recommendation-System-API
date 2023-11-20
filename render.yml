@@ -2,4 +2,6 @@ services:
   - name: skill-edu-career-path
     type: web
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn your_app_module:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8001
+    env:
+      PYTHONUNBUFFERED: 1

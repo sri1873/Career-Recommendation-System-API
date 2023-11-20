@@ -1,6 +1,7 @@
 fastapi-mail
 fastapi
 starlette
+gunicorn
 python-decouple
 bcrypt 
 pandas 
