@@ -11,5 +11,6 @@ pymongo
 sqlalchemy 
 passlib 
 pydantic 
+pydantic-settings
 python-jose
 scikit-learn
