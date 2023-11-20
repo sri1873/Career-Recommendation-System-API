@@ -1,4 +1,7 @@
 fastapi-mail
+fastapi
+starlette
+gunicorn
 python-decouple
 bcrypt 
 pandas 
@@ -7,6 +10,5 @@ uvicorn
 pymongo 
 sqlalchemy 
 passlib 
-pydantic 
 python-jose
 scikit-learn

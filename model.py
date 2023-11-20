@@ -1,19 +1,15 @@
 import uuid
-from datetime import date, datetime
+from datetime import datetime
 
 from sqlalchemy import (
     BigInteger,
     Column,
     Date,
     DateTime,
-    Float,
-    ForeignKey,
-    Integer,
     String,
     Time,
 )
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 

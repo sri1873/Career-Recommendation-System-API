@@ -11,7 +11,6 @@ import auth
 import db
 import hashing
 import model
-import schema
 from service import importCSV
 
 logger = logging.getLogger(__name__)
@@ -41,7 +40,7 @@ router = APIRouter(tags=["Users"], prefix="/user")
 
 
 @router.post("/login")
-def login(form_data: schema.Login):
+def login(form_data):
     user: model.UserModel = db.collection1.find_one({"email": form_data.email_id})
     if not (user and hashing.verify_password(form_data.password, user["password"])):
         raise HTTPException(
@@ -71,7 +70,7 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
 
 
 @router.post("/email")
-async def simple_send(email: schema.EmailSchema) -> JSONResponse:
+async def simple_send(email) -> JSONResponse:
     message = MessageSchema(
         subject="Fastapi-Mail module",
         recipients=email.dict().get("email"),
