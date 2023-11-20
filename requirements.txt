@@ -10,7 +10,6 @@ uvicorn
 pymongo 
 sqlalchemy 
 passlib 
-pydantic 
-pydantic-settings
+pydantic==1.8.3
 python-jose
 scikit-learn
