@@ -5,12 +5,12 @@ from pymongo.database import Database
 import model
 
 # Replace these with your MongoDB connection details
-mongo_host = "localhost"
-mongo_port = 27017
-mongo_db_name = "your_database_name"
+
+mongo_uri = "mongodb+srv://kssrikumar180703:Pa55w0rd@cluster0.tehiwwb.mongodb.net/Skill_Edu"
+mongo_db_name = "Skill_Edu"
 
 # Create a MongoDB client and connect to your database
-client = MongoClient(mongo_host, mongo_port)
+client = MongoClient(mongo_uri)
 database: Database = client[mongo_db_name]
 
 

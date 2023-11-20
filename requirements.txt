@@ -1,0 +1,12 @@
+fastapi-mail
+python-decouple
+bcrypt 
+pandas 
+python-multipart 
+uvicorn 
+pymongo 
+sqlalchemy 
+passlib 
+pydantic 
+python-jose
+scikit-learn
