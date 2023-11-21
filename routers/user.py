@@ -3,13 +3,12 @@ from io import BytesIO
 
 import pandas as pd
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
-from schema import EmailSchema, Login
+from schema import Login
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
 from starlette.responses import JSONResponse
-import smtplib
-from email.mime.text import MIMEText
+import yagmail
 
-
+from schema import EmailSchema
 import auth
 import db
 import hashing
@@ -73,14 +72,16 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
 
 @router.post("/email")
 async def simple_send(email: EmailSchema) -> JSONResponse:
-    message_body = f"Your password is Pa55w0rd. Click <a href='https://skill-edu.netlify.app/'>here</a> to access."
-    message = MessageSchema(
-        subject="Fastapi-Mail module",
-        recipients=email.dict().get("email"),
-        body=message_body,
-        subtype=MessageType.html,
-    )
-
-    fm = FastMail(conf)
-    await fm.send_message(message)
+    subject = "FastAPI Email"
+    body = f"Your password is Pa55w0rd. Click <a href='https://skill-edu.netlify.app/'>here</a> to access."
+    try:
+        yag = yagmail.SMTP("kssrikumar180703@gmail.com", "bddf cjjh xivz ipjk")
+        yag.send(
+            to=email.dict().get("email"),
+            subject=subject,
+            contents=body,
+        )
+        yag.close()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
     return JSONResponse(status_code=200, content={"message": "email has been sent"})

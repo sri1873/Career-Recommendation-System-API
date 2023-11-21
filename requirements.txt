@@ -1,5 +1,4 @@
 fastapi
-fastapi-mail
 gunicorn
 python-decouple
 bcrypt
