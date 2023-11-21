@@ -73,11 +73,12 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
 @router.post("/email")
 async def simple_send(email: EmailSchema) -> JSONResponse:
     subject = "FastAPI Email"
+    print(email.email)
     body = f"Your password is Pa55w0rd. Click <a href='https://skill-edu.netlify.app/'>here</a> to access."
     try:
         yag = yagmail.SMTP("kssrikumar180703@gmail.com", "bddf cjjh xivz ipjk")
         yag.send(
-            to=email.dict().get("email"),
+            to=email.email,
             subject=subject,
             contents=body,
         )
