@@ -4,7 +4,6 @@ from io import BytesIO
 import pandas as pd
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 from schema import Login
-from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
 from starlette.responses import JSONResponse
 import yagmail
 
@@ -26,18 +25,6 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 router = APIRouter(tags=["Users"], prefix="/user")
-
-conf = ConnectionConfig(
-    MAIL_USERNAME="kssrikumar180703@gmail.com",
-    MAIL_PASSWORD="bddf cjjh xivz ipjk",
-    MAIL_FROM="kssrikumar180703@gmail.com",
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=False,
-    MAIL_SSL_TLS=True,
-    USE_CREDENTIALS=True,
-    VALIDATE_CERTS=True,
-)
 
 
 @router.post("/login")
