@@ -4,10 +4,8 @@ from typing import List
 from pydantic import BaseModel, EmailStr
 
 
-class EmailBody(BaseModel):
-    to: str
-    subject: str
-    message: str
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
 
 
 class Login(BaseModel):
