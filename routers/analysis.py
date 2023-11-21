@@ -38,6 +38,6 @@ def recommendations(studentId: str):
 
 
 
-@router.post("/top_3rank")
+@router.get("/top_3rank")
 def top3_rankandstudentrank(studentId: str):
     return analysisService.get_rank_and_top3(studentId)

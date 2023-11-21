@@ -3,10 +3,11 @@ from io import BytesIO
 
 import pandas as pd
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
-from schema import EmailBody
+from schema import EmailBody,Login
 from starlette.responses import JSONResponse
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
+
 
 import auth
 import db
@@ -30,9 +31,9 @@ router = APIRouter(tags=["Users"], prefix="/user")
 
 
 @router.post("/login")
-def login(emailId: str, password: str):
-    user: model.UserModel = db.collection1.find_one({"email": emailId})
-    if not (user and hashing.verify_password(password, user["password"])):
+def login(formdata:Login):
+    user: model.UserModel = db.collection1.find_one({"email": formdata.email_id})
+    if not (user and hashing.verify_password(formdata.password, user["password"])):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
