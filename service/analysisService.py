@@ -139,6 +139,7 @@ def calculate_student_overall_performance(studentId):
             updated_marks[subject] = updated_mark
     if subject in job_role_subjects:
         expected_marks = job_role_subjects[subject]
+    
 
     overall_performance = sum(
         (
@@ -280,8 +281,6 @@ def get_rank_and_top3(studentId):
             all_marks.append({"_id": student["_id"], "actual_marks": latest_performance[-1].get("actual", 0)})
 
     print(all_marks)
-    if len(all_marks) <= 1:
-        return all_marks
 
     def quick_sort_descending(student_data):
         if len(student_data) <= 1:
