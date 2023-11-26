@@ -79,3 +79,14 @@ async def simple_send(email: EmailSchema) -> JSONResponse:
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
     return JSONResponse(status_code=200, content={"message": "email has been sent"})
+
+
+@router.post("/uploadsoftskills")
+def uploadSoftSkill(year: str, semester: str, file: UploadFile = File()):
+    contents = file.file.read()
+    buffer = BytesIO(contents)
+    df = pd.read_csv(buffer, skip_blank_lines=True)
+    student = importCSV.uploadSoftSkill(df, year, semester)
+    buffer.close()
+    file.file.close()
+    return JSONResponse(status_code=200, content={"Successfully updated the marks"})

@@ -10,7 +10,7 @@ def calculate_student_skill_gap(studentId):
     result_list1 = [marks for marks in subjectMarks]
 
     career_subjects = []
-    path = Path(__file__).parent / "../data/CareerJobData.csv"
+    path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
 
     with path.open("r", encoding="utf-8") as csv_file:
         reader = csv.reader(csv_file)
@@ -82,7 +82,7 @@ def calculate_student_overall_performance(studentId):
     result_list1 = [marks for marks in subjectMarks]
 
     career_subjects = []
-    path = Path(__file__).parent / "../data/CareerJobData.csv"
+    path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
 
     with path.open("r", encoding="utf-8") as csv_file:
         reader = csv.reader(csv_file)
@@ -137,9 +137,9 @@ def calculate_student_overall_performance(studentId):
             )
             updated_mark = (mark / 100) * career_subject_weight
             updated_marks[subject] = updated_mark
+    print(updated_marks)
     if subject in job_role_subjects:
         expected_marks = job_role_subjects[subject]
-    
 
     overall_performance = sum(
         (
@@ -150,7 +150,44 @@ def calculate_student_overall_performance(studentId):
         for subject, updated_mark in updated_marks.items()
         if subject in job_role_subjects and updated_mark != 0
     )
-    return {"overall_performance": overall_performance}
+    
+    target_subjects = []
+    path = Path(__file__).parent / "../data/TargetvaluesFinal.csv"
+    with path.open( "r", encoding="utf-8") as target_file:
+        target_reader = csv.reader(target_file)
+        for row in target_reader:
+            target_subjects.append([str(item) for item in row])
+
+    job_role_index = target_subjects[0].index("Job Title")
+    job_role_subjects_target = None
+
+    for idx, row in enumerate(target_subjects):
+        if row[0] == student_job_role:
+            job_role_index = idx
+            break
+
+    if job_role_index is None:
+        return "Job role not found in the target data."
+
+    job_role_subjects_target = {
+        subject: float(mark)
+        for subject, mark in zip(
+            target_subjects[0][1:], target_subjects[job_role_index][1:]
+        )
+    }
+    print(job_role_subjects)
+    print(job_role_subjects_target)
+    overall_performance_target = sum(
+        (
+            job_role_subjects[subject]
+            * (100 - ((job_role_subjects[subject] - job_role_subjects_target[subject]) / job_role_subjects[subject]) * 100)
+        )
+        / 100
+        for subject in job_role_subjects_target
+        if subject in job_role_subjects and job_role_subjects_target[subject] != 0
+    )
+    
+    return overall_performance,overall_performance_target
 
 def getOverallPerformance(studentId):
     return db.collection4.find_one({"_id":studentId});
@@ -161,7 +198,7 @@ def recommendations(studentId):
     result_list1 = [marks for marks in subjectMarks]
 
     career_subjects = []
-    path = Path(__file__).parent / "../data/CareerJobData.csv"
+    path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
 
     with path.open("r", encoding="utf-8") as csv_file:
         reader = csv.reader(csv_file)
@@ -281,6 +318,8 @@ def get_rank_and_top3(studentId):
             all_marks.append({"_id": student["_id"], "actual_marks": latest_performance[-1].get("actual", 0)})
 
     print(all_marks)
+    if len(all_marks) <= 1:
+        return all_marks
 
     def quick_sort_descending(student_data):
         if len(student_data) <= 1:
