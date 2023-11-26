@@ -1,22 +1,22 @@
 ﻿S NO,PRGM,STUDENTID,EMAIL,STUDNAME,Physics,Maths,Basic Electrical & Electronics,C Programing,Chemistry,EVS,Basic Electrical Engineering Lab,PhysicsLab,Computational Mathematics,R Programming,Artificial Intelligence,HTML/CSS,Java,JavaScript,Data Structures,Statistical Inference,C-Programming Lab,Chemistry Lab,MEC101 P,SEM1 GPA,Credits till Sem-1,Mock Test Marks
 1,B.Tech'20,20WU0101001,varunteja.kalakoti_2024@woxsen.edu.in,Kalakoti  Varun teja,B-,C+,B-,B+,B-,P,C,A-,C+,C,C,C,F,C,C+,B,A-,B,A,2.9,21,13
-2,B.Tech'20,20WU0101002,Lavaneethreddy.podduturi_2024@woxsen.edu.in,Podduturi Lavaneeth Reddy ,C+,C,B,B-,B,P,C,C-,C,C,C,C,F,C,C,B-,B-,B-,D,2.62,21,10
+2,B.Tech'20,20WU0101002,lavaneethreddy.podduturi_2024@woxsen.edu.in,Podduturi Lavaneeth Reddy ,C+,C,B,B-,B,P,C,C-,C,C,C,C,F,C,C,B-,B-,B-,D,2.62,21,10
 3,B.Tech'20,20WU0101003,siddhartha.talasila_2024@woxsen.edu.in,Siddhartha Talasila,C,C+,C+,B-,C-,P,A-,D,C+,A-,A-,A-,F,A-,C+,C+,C+,C+,A-,2.49,21,10
 4,B.Tech'20,20WU0101004,vasireddy.hasitha_2024@woxsen.edu.in ,Vasireddy  Bindu Hasitha,A+,A+,A+,A+,A,P,A+,A+,A+,A+,A+,A+,F,A+,A+,A,A,A,A-,3.92,21,13
-5,B.Tech'20,20WU0101005,,Eguturi  Manjith Kumar Reddy,A-,A-,A+,A,A,P,A+,B+,A-,A+,A+,A+,A+,A+,A-,A+,A+,A+,D,3.65,21,17
+5,B.Tech'20,20WU0101005,manjithkumar.eguturi_2024@woxsen.edu.in,Eguturi  Manjith Kumar Reddy,A-,A-,A+,A,A,P,A+,B+,A-,A+,A+,A+,A+,A+,A-,A+,A+,A+,D,3.65,21,17
 6,B.Tech'20,20WU0101006,akash.gurrala_2024@woxsen.edu.in,Akash Gurrala,B,B+,B,B+,B,P,C+,B,B+,C+,C+,C+,B,C+,B+,A,A-,A,D,3.05,21,13
-7,B.Tech'20,20WU0101007,Kinshuk.sunderreddy_2024@woxsen.edu.in,T  Kinshuk Sunder  Reddy,D,C-,D,C,D,P,C+,C-,C-,C+,C+,C+,D,C+,C-,B-,C,B-,C-,1.99,21,16
+7,B.Tech'20,20WU0101007,kinshuk.sunderreddy_2024@woxsen.edu.in,T  Kinshuk Sunder  Reddy,D,C-,D,C,D,P,C+,C-,C-,C+,C+,C+,D,C+,C-,B-,C,B-,C-,1.99,21,16
 8,B.Tech'20,20WU0101010,bharath.reddy_2024@woxsen.edu.in ,Bharath Reddy,B,B+,B-,B+,B,P,B,A,B+,B,B,C,D,C,B+,A-,B+,A-,A+,3.15,21,10
 9,B.Tech'20,20WU0101012,palak.goel_2024@woxsen.edu.in,Palak  Goel,A,A-,B,A-,B+,P,A-,A-,A-,A-,A-,C,C,C,A-,A+,A-,A+,A+,3.46,21,13
 10,B.Tech'20,20WU0101015,kennyjoel.kuragayala_2024@woxsen.edu.in,Kuragayala Kenny Joel,C-,B,C-,C,B-,P,B,C-,B,B,B,C,B,C,B,B+,B-,B+,C,2.45,21,14
-11,B.Tech'20,20WU0101017,Muralikrishna.thirunathi_2024@woxsen.edu.in,Murali Krishna  Thirunathi,D,C+,C-,C,C+,P,B-,C-,C+,B-,B-,F,B,F,C+,B-,C,B-,C-,2.23,21,19
+11,B.Tech'20,20WU0101017,muralikrishna.thirunathi_2024@woxsen.edu.in,Murali Krishna  Thirunathi,D,C+,C-,C,C+,P,B-,C-,C+,B-,B-,F,B,F,C+,B-,C,B-,C-,2.23,21,19
 12,B.Tech'20,20WU0101018,aparna.vemuganti_2024@woxsen.edu.in,Aparna  Vemuganti,C,B,B,B,B-,P,B,B,B,B,B,D,B,D,B,A-,B,A-,A-,2.91,21,10
 13,B.Tech'20,20WU0101020,Ruthwik.reddy_2024@woxsen.edu.in,ChittiReddy  Ruthwik,D,C-,C-,C-,C,P,D,D,C-,D,D,D,C,D,C-,C-,C+,C-,F,1.91,20,13
 14,B.Tech'20,20WU0101022,satwik.goud_2024@woxsen.edu.in,K E Satwik  Goud,B-,B-,C+,B,C,P,D,D,B-,D,D,D,A+,D,B-,D,B,D,C-,2.5,21,17
-15,B.Tech'20,20WU0101023,,Athri  Nandan,B,B,B,B,B-,P,B+,C+,B,B+,B+,F,C,F,B,B,B,B,D,2.9,21,13
-16,B.Tech'20,20WU0101024,,Donepudi  Sadhana,B-,B,B+,C+,B,P,A-,C,B,A-,A-,A-,C+,A-,B,A-,B-,A-,A,2.98,21,15
+15,B.Tech'20,20WU0101023,athrinandan.alimilla_2024@woxsen.edu.in,Athri  Nandan,B,B,B,B,B-,P,B+,C+,B,B+,B+,F,C,F,B,B,B,B,D,2.9,21,13
+16,B.Tech'20,20WU0101024,sadhana.donepudi_2024@woxsen.edu.in,Donepudi  Sadhana,B-,B,B+,C+,B,P,A-,C,B,A-,A-,A-,C+,A-,B,A-,B-,A-,A,2.98,21,15
 17,B.Tech'20,20WU0101025,rushivardhan.g_2024@woxsen.edu.in,Rushivardhan g,B+,A,B+,B+,B,P,C-,B-,A,C-,A+,C,A+,C-,A+,B,B,B,C-,3.12,21,16
 18,B.Tech'20,20WU0101027,sai.gunavardhan_2024@woxsen.edu.in,V Sai  Gunavardhan,B,A,B,B,B+,P,B,B,B-,A+,B,B,B,C-,A+,A+,B,B,C-,2.96,21,10
 19,B.Tech'20,20WU0101030,hotragn.pettugani_2024@woxsen.edu.in,Hotragn Pettugani,B+,B,A-,A-,A-,P,B-,B-,B,B-,B-,B-,C,C-,B,B,B+,B,C,3.23,21,11
-20,B.Tech'20,20WU0101031,Srinath.vissarapu_2024@woxsen.edu.in,Vissarapu  Srinath,B-,B-,B-,C+,A-,P,A,C,B-,A,A,A,F,C-,B-,B+,B-,B+,A-,2.91,21,14
+20,B.Tech'20,20WU0101031,srinath.vissarapu_2024@woxsen.edu.in,Vissarapu  Srinath,B-,B-,B-,C+,A-,P,A,C,B-,A,A,A,F,C-,B-,B+,B-,B+,A-,2.91,21,14
 21,B.Tech'20,20WU0101034,arun.chandra_2024@woxsen.edu.in,Arun  Chandra ,A+,A,A-,A,A+,P,A,A+,A,A,A,A,A,A,A,A,A,A,D,3.7,21,14
