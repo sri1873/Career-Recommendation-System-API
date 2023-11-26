@@ -34,14 +34,15 @@ class CreateUser(BaseModel):
 
 
 class UserDetails(BaseModel):
-    first_name: str
-    last_name: str
-    date_of_birth: date
-    phone_number: int
-    address: str
-    city: str
-    state: str
-    country: str
+    first_name: str | None
+    last_name: str | None
+    # date_of_birth: date
+    phone_number: int | None
+    city: str | None
+    state: str | None
+    country: str | None
+    linkedin: str | None
+    profile_img: str | None
 
     class Config:
         fields = {"date_of_birth": "dateOfBirth", "phone_number": "phoneNumber"}

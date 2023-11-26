@@ -3,7 +3,7 @@ from io import BytesIO
 
 import pandas as pd
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
-from schema import Login
+from schema import Login, UserDetails
 from starlette.responses import JSONResponse
 import yagmail
 
@@ -35,13 +35,9 @@ def login(formdata: Login):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
         )
+    user["roles"]= [{"authority": "USER"}],
     access_token = auth.create_access_token(
-        data={
-            "mail": user["email"],
-            "careerPath": user["carrer_path"],
-            "user_id": user["_id"],
-            "roles": [{"authority": "USER"}],
-        }
+        data = user
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -55,6 +51,16 @@ def startUp(markSys: str, year: str, semester: str, file: UploadFile = File()):
     buffer.close()
     file.file.close()
     return studentMails
+
+
+@router.put("/updateuser")
+def startUp(studentId: str, user: UserDetails):
+    return importCSV.updateUser(studentId, user)
+
+
+@router.get("/getuser")
+def startUp(studentId: str,):
+    return db.collection1.find_one({"_id": studentId})
 
 
 @router.post("/email")

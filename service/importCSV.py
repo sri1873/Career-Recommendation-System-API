@@ -1,4 +1,3 @@
-
 import uuid
 
 import db
@@ -63,6 +62,15 @@ def convertMarks(file, markSys, year, semester):
                     "year": year,
                     "semester": semester,
                     "carrer_path": None,
+                    "linkedin": None,
+                    "profile_img": None,
+                    "phone_number": None,
+                    "first_name": None,
+                    "last_name": None,
+                    # "date_of_birth": None,
+                    "city": None,
+                    "state": None,
+                    "country": None,
                 }
             },
             upsert=True,
@@ -71,3 +79,26 @@ def convertMarks(file, markSys, year, semester):
         if email != "False":
             emails.append(email)
     return emails
+
+
+def updateUser(studentId, user):
+    db.collection1.update_one(
+        {"_id": studentId},
+        {
+            "$set": {
+                "_id": studentId,
+                "linkedin": user.linkedin,
+                "profile_img": user.profile_img,
+                "phone_number": user.phone_number,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                # "date_of_birth": user.date_of_birth,
+                "city": user.city,
+                "state": user.state,
+                "country": user.country,
+            }
+        },
+        upsert=True,
+    )
+    return True
+
