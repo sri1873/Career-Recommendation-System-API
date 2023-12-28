@@ -288,10 +288,11 @@ def getOverallPerformance(studentId):
     if semresults:
         results_list = []
         for sem, data in semresults['results'].items():
+            semr=data['SEM']
             results_list.append({
                 'target': data['target'],
                 'actual': data['actual'],
-                'SEM': data['SEM']
+                'label': f"SEM-{semr}"
             })
         return {
             "_id": semresults["_id"],
@@ -414,10 +415,8 @@ def recommendations(studentId):
 def get_rank_and_top3(studentId):
     student_job_role = db.collection1.find_one({"_id": studentId}).get("carrer_path")
     s_current_sem=db.collection1.find_one({"_id": studentId}).get("semester")
-    print(s_current_sem)
     cursor = db.collection1.find({"carrer_path": student_job_role,"semester":s_current_sem,},{"_id": 1})
     all_students = [student["_id"] for student in cursor]
-    print(all_students)
 
     marks = db.collection4.find({"_id": {"$in": all_students}}, {"_id": 1, "results": 1})
 
@@ -427,7 +426,6 @@ def get_rank_and_top3(studentId):
      results = student.get("results", {})
      sem=f"SEM-{s_current_sem}"
      current_sem_results = results.get(sem, {}) 
-     print(current_sem_results)
      if isinstance(current_sem_results, dict):
         label = current_sem_results.get("SEM", "")
         actual = current_sem_results.get("actual", 0)
