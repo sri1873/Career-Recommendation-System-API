@@ -265,7 +265,7 @@ def semwise_overallperformance(studentId):
             "Object": {
                 "target": overall_perf_target,
                 "actual": overall_perf,
-                "label": f"SEM-{sem}"
+                "SEM": f"{sem}"
             }
         }
         overall_results["results"][f"SEM-{sem}"] = semester_result["Object"]
@@ -284,8 +284,21 @@ def semwise_overallperformance(studentId):
 
 
 def getOverallPerformance(studentId):
-    return db.collection4.find_one({"_id":studentId});
-
+    semresults= db.collection4.find_one({"_id":studentId});
+    if semresults:
+        results_list = []
+        for sem, data in semresults['results'].items():
+            results_list.append({
+                'target': data['target'],
+                'actual': data['actual'],
+                'SEM': data['SEM']
+            })
+        return {
+            "_id": semresults["_id"],
+            "results": results_list
+        }
+    else:
+        return None
 def recommendations(studentId):
     subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
 
@@ -400,21 +413,35 @@ def recommendations(studentId):
 
 def get_rank_and_top3(studentId):
     student_job_role = db.collection1.find_one({"_id": studentId}).get("carrer_path")
-
-    cursor = db.collection1.find({"carrer_path": student_job_role}, {"_id": 1})
+    s_current_sem=db.collection1.find_one({"_id": studentId}).get("semester")
+    print(s_current_sem)
+    cursor = db.collection1.find({"carrer_path": student_job_role,"semester":s_current_sem,},{"_id": 1})
     all_students = [student["_id"] for student in cursor]
-    marks = db.collection4.find({"_id": {"$in": all_students}}, {"_id": 1, "performance": 1})
+    print(all_students)
+
+    marks = db.collection4.find({"_id": {"$in": all_students}}, {"_id": 1, "results": 1})
 
     all_marks = []
     for student in marks:
-        latest_performance = sorted(student.get("performance", []), key=lambda x: x.get("label", ""), reverse=True)
-        if latest_performance:
-            all_marks.append({"_id": student["_id"], "actual_marks": latest_performance[-1].get("actual", 0)})
+     print(f"Processing student: {student['_id']}")
+     results = student.get("results", {})
+     sem=f"SEM-{s_current_sem}"
+     current_sem_results = results.get(sem, {}) 
+     print(current_sem_results)
+     if isinstance(current_sem_results, dict):
+        label = current_sem_results.get("SEM", "")
+        actual = current_sem_results.get("actual", 0)
+        if label:
+            all_marks.append({"_id": student["_id"], "actual_marks": actual})
+     else:
+        print(f"Ignoring non-dictionary result entry for semester {s_current_sem}: {current_sem_results}")
 
-    print(all_marks)
-    if len(all_marks) <= 1:
-        return all_marks
+    sorted_marks = sorted(all_marks, key=lambda x: x.get("actual_marks", 0), reverse=True)
+    print(f"Sorted Marks: {sorted_marks}")
 
+    if len(sorted_marks) <= 1:
+     print(f"Returning Marks: {sorted_marks}")
+     return sorted_marks
     def quick_sort_descending(student_data):
         if len(student_data) <= 1:
             return student_data
