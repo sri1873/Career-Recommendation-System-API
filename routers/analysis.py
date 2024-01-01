@@ -25,7 +25,7 @@ def SkilGap(studentId: str):
 
 @router.post("/overallperformance")
 def overall_performance(studentId: str):
-    return analysisService.calculate_student_overall_performance(studentId)
+    return analysisService.semwise_overallperformance(studentId)
 
 @router.get("/getoverallperformance")
 def get_overall_performance(studentId: str):

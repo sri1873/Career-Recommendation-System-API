@@ -12,7 +12,7 @@ def careerFit(studentId):
     result_list1 = [marks for marks in subjectMarks]
 
     career_subjects = []
-    path = Path(__file__).parent / "../data/CareerJobData.csv"
+    path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
 
     with path.open("r", encoding="utf-8") as csv_file:
         reader = csv.reader(csv_file)

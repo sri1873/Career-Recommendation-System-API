@@ -81,6 +81,7 @@ def convertMarks(file, markSys, year, semester):
     return emails
 
 
+
 def updateUser(studentId, user):
     db.collection1.update_one(
         {"_id": studentId},
@@ -101,9 +102,8 @@ def updateUser(studentId, user):
         upsert=True,
     )
     return True
-def check_student_exists(year, semester):
-    student = db.colection1.find_one({'year': year, 'semester': semester})
-    return student is not None
+def check_student_exists(year, semester,studentId):
+    student = db.collection1.find_one({'_id':studentId,'year': year, 'semester': semester})
 
 def add_student_to_studentdetails_collection(student_details):
     db.collection1.insert_one(student_details)
@@ -112,30 +112,32 @@ def add_marks_to_softskill_collection(studentId, subjectMarks):
     db.collection5.insert_one({'student_id': studentId, 'marks_data': subjectMarks})
 
 def parse_excel(file):
-    
+    student_details = {}
+    subject_marks = {}
+
     for index in range(len(file)):
-        userName = file.iloc[index]["STUDNAME"]
-        id = file.iloc[index]["STUDENTID"]
-        email = file.iloc[index]["EMAIL"]
+        student_details['userName'] = file.iloc[index]["STUDNAME"]
+        student_details['id'] = file.iloc[index]["STUDENTID"]
+        student_details['email'] = file.iloc[index]["EMAIL"]
         for column in file.columns:
             if column in ["S NO", "STUDNAME", "STUDENTID", "EMAIL", "PRGM"]:
-                student_details = file.iloc[index]["S NO", "STUDNAME", "STUDENTID", "EMAIL", "PRGM"]
                 continue
             else:
-                subjectMarks = file.iloc[index][column]
-        return student_details,subjectMarks
+                subject_marks[column] = file.iloc[index][column]
+
+        yield student_details, subject_marks
 
 def uploadSoftSkill(file, year, semester):
-    student_details, subjectMarks = parse_excel(file)
+    for student_details, subject_marks in parse_excel(file):
+        studentId = student_details['id']  # Assuming 'id' holds the studentID
 
-    student_exists = check_student_exists(year, semester)
+        student_exists = check_student_exists(year, semester,studentId)
 
-    if student_exists:
-        student = db.studentdetails.find_one({'year': year, 'semester': semester})
-        add_marks_to_softskill_collection(student['_id'], marks_data)
-    else:
-        add_student_to_studentdetails_collection(student_details)
+        if student_exists:
+            student = db.collection1.find_one({'studentID': studentId})
+            add_marks_to_softskill_collection(student['_id'], subject_marks)
+        else:
+            add_student_to_studentdetails_collection(student_details)
 
-        new_student = db.studentdetails.find_one({'year': year, 'semester': semester})
-        add_marks_to_softskill_collection(new_student['_id'], marks_data)
-
+            new_student = db.collection1.find_one({'studentID': studentId})
+            add_marks_to_softskill_collection(new_student['_id'], subject_marks)

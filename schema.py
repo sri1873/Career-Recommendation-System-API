@@ -1,5 +1,5 @@
 from datetime import date
-from typing import List
+from typing import List,Optional
 
 from pydantic import BaseModel
 
@@ -34,15 +34,15 @@ class CreateUser(BaseModel):
 
 
 class UserDetails(BaseModel):
-    first_name: str | None
-    last_name: str | None
-    # date_of_birth: date
-    phone_number: int | None
-    city: str | None
-    state: str | None
-    country: str | None
-    linkedin: str | None
-    profile_img: str | None
+    first_name: Optional[str]
+    last_name: Optional[str]
+    date_of_birth: Optional[date]
+    phone_number: Optional[int]
+    city: Optional[str]
+    state: Optional[str]
+    country: Optional[str]
+    linkedin: Optional[str]
+    profile_img: Optional[str]
 
     class Config:
         fields = {"date_of_birth": "dateOfBirth", "phone_number": "phoneNumber"}
