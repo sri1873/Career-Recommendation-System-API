@@ -6,6 +6,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 import db
 
+import service.analysisService 
+
 
 def careerFit(studentId):
     subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
@@ -99,3 +101,6 @@ def add_careerpath(studentId, careerpath):
         print(f"Updated career path for student {studentId}: {student['carrer_path']}")
     else:
         print("Student not found.")
+
+    service.analysisService.semwise_overallperformance(studentId)
+    
