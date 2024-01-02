@@ -20,7 +20,7 @@ router = APIRouter(tags=["Career Fitting"], prefix="/career")
 
 @router.get("/careerfit")
 def careerFit(studentId: str):
-    return carrerfittingService.careerFit(studentId)
+    return carrerfittingService.semwise_marks(studentId)
 
 
 @router.get("/getCareerPaths")
