@@ -6,10 +6,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 import db
 
+import service.analysisService 
 
-def careerFit(studentId):
-    subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
-    result_list1 = [marks for marks in subjectMarks]
+
+def careerFit(result_list1):
 
     career_subjects = []
     path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
@@ -87,6 +87,79 @@ def careerFit(studentId):
     else:
         return "No job roles found in the career_subjects dataset."
 
+def semwise_marks(studentId):
+        student_current_sem= int(db.collection1.find_one({"_id": studentId}).get("semester"))
+        sem=student_current_sem
+        print(student_current_sem)
+        if sem == 1:
+            subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem == 2:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==3:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==4:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==5:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==6:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==7:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        elif sem==8:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem8 = db.collection12.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7+subjectMarksSem8
+            result_list1 = [marks for marks in subjectMarks]
+            return careerFit(result_list1)
+        else:
+            print("no sem details of student")
 
 def getCareerPaths():
     return list(db.collection3.find())
@@ -99,3 +172,6 @@ def add_careerpath(studentId, careerpath):
         print(f"Updated career path for student {studentId}: {student['carrer_path']}")
     else:
         print("Student not found.")
+
+    service.analysisService.semwise_overallperformance(studentId)
+    

@@ -20,7 +20,7 @@ router = APIRouter(tags=["Analysis"], prefix="/analysis")
 
 @router.post("/skill-Gap-Analysis")
 def SkilGap(studentId: str):
-    return analysisService.calculate_student_skill_gap(studentId)
+    return analysisService.semwise_marks_for_skill_gap(studentId)
 
 
 @router.post("/overallperformance")
@@ -34,7 +34,7 @@ def get_overall_performance(studentId: str):
 
 @router.post("/recommendations")
 def recommendations(studentId: str):
-    return analysisService.recommendations(studentId)
+    return analysisService.semwise_marks(studentId)
 
 @router.get("/top_3rank")
 def top3_rankandstudentrank(studentId: str):

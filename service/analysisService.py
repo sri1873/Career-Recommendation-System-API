@@ -2,10 +2,8 @@ import csv
 from pathlib import Path
 from bson import ObjectId
 import db
-def calculate_student_skill_gap(studentId):
-    subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+def calculate_student_skill_gap(result_list1,studentId):
 
-    result_list1 = [marks for marks in subjectMarks]
 
     career_subjects = []
     path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
@@ -300,10 +298,9 @@ def getOverallPerformance(studentId):
         }
     else:
         return None
-def recommendations(studentId):
-    subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
 
-    result_list1 = [marks for marks in subjectMarks]
+
+def recommendations(result_list1,studentId):
 
     career_subjects = []
     path = Path(__file__).parent / "../data/CareerJobDatafinal.csv"
@@ -500,3 +497,152 @@ def get_rank_and_top3(studentId):
             "rank": idx + 1
         } for idx, student in enumerate(top_3_students)]
         return top_3_students_formatted + [student_rank]
+
+def semwise_marks(studentId):
+        student_current_sem= int(db.collection1.find_one({"_id": studentId}).get("semester"))
+        sem=student_current_sem
+        print(student_current_sem)
+        if sem == 1:
+            subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem == 2:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==3:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==4:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==5:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==6:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==7:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        elif sem==8:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem8 = db.collection12.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7+subjectMarksSem8
+            result_list1 = [marks for marks in subjectMarks]
+            return recommendations(result_list1,studentId)
+        else:
+            print("no sem details of student")
+
+
+def semwise_marks_for_skill_gap(studentId):
+        student_current_sem= int(db.collection1.find_one({"_id": studentId}).get("semester"))
+        sem=student_current_sem
+        print(student_current_sem)
+        if sem == 1:
+            subjectMarks = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem == 2:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==3:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==4:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==5:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==6:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==7:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        elif sem==8:
+            subjectMarksSem1 = db.collection2.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem2 = db.collection6.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem3 = db.collection7.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem4 = db.collection8.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem5 = db.collection9.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem6 = db.collection10.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem7 = db.collection11.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarksSem8 = db.collection12.find_one({"student_id": studentId})["subject_marks"]
+            subjectMarks=subjectMarksSem1+subjectMarksSem2+subjectMarksSem3+subjectMarksSem4+subjectMarksSem5+subjectMarksSem6+subjectMarksSem7+subjectMarksSem8
+            result_list1 = [marks for marks in subjectMarks]
+            return calculate_student_skill_gap(result_list1,studentId)
+        else:
+            print("no sem details of student")
