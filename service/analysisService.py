@@ -282,6 +282,7 @@ def semwise_overallperformance(studentId):
 
 
 def getOverallPerformance(studentId):
+    semwise_overallperformance(studentId)
     semresults= db.collection4.find_one({"_id":studentId});
     if semresults:
         results_list = []
