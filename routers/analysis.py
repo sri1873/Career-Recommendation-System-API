@@ -29,6 +29,7 @@ def overall_performance(studentId: str):
 
 @router.get("/getoverallperformance")
 def get_overall_performance(studentId: str):
+    analysisService.semwise_overallperformance(studentId)
     return analysisService.getOverallPerformance(studentId)
 
 
