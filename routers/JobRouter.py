@@ -1,8 +1,8 @@
-from service.JobsService import get_students
+from service.JobsService import get_students, createcareerpath
 import logging
+from model import carrer_path
 
-
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -20,3 +20,16 @@ router = APIRouter(tags=["Jobs"], prefix="/jobs")
 @router.get("/getallstudents")
 def getallstudents(careerpath: str = None):
     return get_students(careerpath)
+
+
+@router.post("/addcareerpath")
+async def addcarerpath(request: Request):
+
+    data = await request.json()
+    career_path = carrer_path(
+        _id=data.get('_id'),
+        role=data.get('role'),
+        description=data.get('description'),
+        skills=data.get('skills')
+    )
+    return createcareerpath(career_path)
