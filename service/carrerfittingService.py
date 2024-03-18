@@ -174,4 +174,5 @@ def add_careerpath(studentId, careerpath):
         print("Student not found.")
 
     service.analysisService.semwise_overallperformance(studentId)
-    
+
+
