@@ -23,6 +23,6 @@ def getallquestions(studentId: str,subject: str):
     return get_all_questions_and_marks_by_subject(studentId,subject)
 
 
-@router.put("/submitanswers")
+@router.post("/submitanswers")
 def submitanswers(studentId: str,subject: str,submittedanswers: dict):
     return evaluate_answers(studentId,subject,submittedanswers)
