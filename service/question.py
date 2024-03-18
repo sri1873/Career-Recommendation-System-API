@@ -14,6 +14,7 @@ def get_all_questions_and_marks_by_subject(studentId, subject):
                 formatted_question = {
                     "id": question.get("id"),
                     "question": question.get("question"),
+                    "code":question.get("code"),
                     "options": [
                         {"id": option.get("id"), "text": option.get("text")}
                         for option in question.get("options", [])
