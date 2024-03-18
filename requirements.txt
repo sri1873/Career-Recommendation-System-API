@@ -11,4 +11,3 @@ passlib
 python-jose
 scikit-learn
 yagmail
-google-generativeai

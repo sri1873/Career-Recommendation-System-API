@@ -28,3 +28,11 @@ class UserModel(Base):
     created_by = Column(String, nullable=True)
     updated_on = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     updated_by = Column(String, nullable=True)
+
+
+class carrer_path(Base):
+    __tablename__="CareerPaths"
+    _id = Column(String, primary_key=True, unique=True)
+    role = Column(String, nullable=False)
+    description= Column(String, nullable=True)
+    skills=Column(String, nullable=False)

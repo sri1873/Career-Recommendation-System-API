@@ -1,6 +1,5 @@
 import db
-
-
+from model import carrer_path
 
 def get_students(careerpath):
         if careerpath: 
@@ -11,3 +10,11 @@ def get_students(careerpath):
         students_list = list(students)
 
         return students_list
+
+
+def createcareerpath(career_path):
+    try:
+        db.collection3.add(carrer_path)
+        return {"message": "Career path added successfully"}
+    except Exception as e:
+        return {"error": str(e)}
